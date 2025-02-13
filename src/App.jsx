@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import ControllerHandler from "./ControllerHandler";
 import "./App.css";
 
 function App() {
@@ -8,7 +9,11 @@ function App() {
   const [intensity, setIntensity] = useState(50);
   const [tapDuration, setTapDuration] = useState(50);
   const [breakDuration, setBreakDuration] = useState(50);
+  const [controllerHandler, setControllerHandler] = useState(null);
 
+  useEffect(() => { 
+    setControllerHandler(new ControllerHandler());
+  }, []);
 
   return (
     <>
@@ -30,7 +35,7 @@ function App() {
       <input type="range" id="break_duration" name="break_duration" min="0" max="100" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
       <p>{breakDuration/10} seconds</p>
 
-      <button>Begin</button>
+      {controllerHandler != null && (<button onClick={() => controllerHandler.startSession()}>Begin</button>)}
     </>
   );
 }
