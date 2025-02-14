@@ -35,7 +35,8 @@ function App() {
       <input type="range" id="break_duration" name="break_duration" min="0" max="10" step="0.1" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
       <p>{breakDuration} seconds</p>
 
-      {controllerHandler != null && (<button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>)}
+      <button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
+      <button onClick={() => controllerHandler.stopSession()}>Stop</button>
     </>
   );
 }

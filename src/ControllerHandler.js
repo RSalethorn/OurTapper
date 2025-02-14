@@ -8,13 +8,17 @@ export default class ControllerHandler {
         window.addEventListener("gamepaddisconnected", (event) => {
             console.log("Gamepad disconnected:", event.gamepad.id);
         });
+
+        this.timeouts = []
     }
 
     delayVibrateGamepad(gamepad, duration, intensity, delay) {
-        setTimeout(() => {
+        let timeoutID = setTimeout(() => {
             console.log(`Timeout Activated - Intensity: ${intensity}, Delay: ${delay}`);
             this.vibrateGamepad(gamepad, duration + 100, intensity);
         }, delay);
+
+        this.timeouts.push(timeoutID);
         console.log(`Timeout Set - Intensity: ${intensity}, Delay: ${delay}`);
     }
 
@@ -33,6 +37,15 @@ export default class ControllerHandler {
         } else {
             console.log("Vibration not supported on this gamepad.");
         }
+    }
+
+    stopSession() {
+        this.timeouts.forEach(timeoutID => clearTimeout(timeoutID));
+        navigator.getGamepads().forEach(gamepad => {
+            if (gamepad != null) {
+                this.vibrateGamepad(gamepad, 1000, 0);
+            }
+        });
     }
 
     startSession(sessionLength, intensity, tapDuration, breakDuration) {
