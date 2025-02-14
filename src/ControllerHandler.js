@@ -15,7 +15,7 @@ export default class ControllerHandler {
             console.log(`Timeout Activated - Intensity: ${intensity}, Delay: ${delay}`);
             this.vibrateGamepad(gamepad, duration + 100, intensity);
         }, delay);
-        //console.log(`Timeout Set - Intensity: ${intensity}, Delay: ${delay}`);
+        console.log(`Timeout Set - Intensity: ${intensity}, Delay: ${delay}`);
     }
 
     vibrateGamepad(gamepad, duration, intensity) {
@@ -28,71 +28,43 @@ export default class ControllerHandler {
             }).then(() => {
                 console.log("Vibration complete! Intensity: ", intensity);
             }).catch((error) => {
-                //console.error("Vibration failed:", error);
+                console.error("Vibration failed:", error);
             });
         } else {
             console.log("Vibration not supported on this gamepad.");
         }
     }
 
-    startSession(sessionLength, intensity, tapDuration, durationBetweenTaps) {
+    startSession(sessionLength, intensity, tapDuration, breakDuration) {
+        console.log(`sessionLength ${sessionLength}, intensity ${intensity}, tapDuration ${tapDuration}, breakDuration ${breakDuration}`)
         console.log("Test Begins")
         const gamepads = navigator.getGamepads();
         console.log(gamepads)
-        if (gamepads[0] != null && gamepads[1] != null) {
-            let gamepad1 = gamepads[0];
-            let gamepad2 = gamepads[1];
 
-            let stepDuration = 50; //ms
-            let intensitySteps = 0.05;
-            let nextDelay = 0;
-            let waitBetweenTaps = 300;
+        let gamepad1 = gamepads[0];
+        let gamepad2 = gamepads[1];
 
-            while (nextDelay < 50000) {
-                this.delayVibrateGamepad(gamepad1, waitBetweenTaps, 0, nextDelay)
-                this.delayVibrateGamepad(gamepad2, waitBetweenTaps, 0, nextDelay)
-                nextDelay += waitBetweenTaps;
-
-                let startIntensity = 0; //vibration intensity between 0 and 1
-                let currentIntensity = startIntensity;
-
-                while (currentIntensity < 1) {
-                    this.delayVibrateGamepad(gamepad1, stepDuration, currentIntensity, nextDelay)
-                    nextDelay += stepDuration;
-                    currentIntensity += intensitySteps;
-                }
-
-                startIntensity = 1; //vibration intensity between 0 and 1
-                currentIntensity = startIntensity;
-                
-                while (currentIntensity > 0) {
-                    this.delayVibrateGamepad(gamepad1, stepDuration, currentIntensity, nextDelay)
-                    nextDelay += stepDuration;
-                    currentIntensity -= intensitySteps;
-                }
-
-                this.delayVibrateGamepad(gamepad1, waitBetweenTaps, 0, nextDelay)
-                this.delayVibrateGamepad(gamepad2, waitBetweenTaps, 0, nextDelay)
-                nextDelay += waitBetweenTaps;
-
-                startIntensity = 0; //vibration intensity between 0 and 1
-                currentIntensity = startIntensity;
-
-                while (currentIntensity < 1) {
-                    this.delayVibrateGamepad(gamepad2, stepDuration, currentIntensity, nextDelay)
-                    nextDelay += stepDuration;
-                    currentIntensity += intensitySteps;
-                }
-
-                startIntensity = 1; //vibration intensity between 0 and 1
-                currentIntensity = startIntensity;
-                
-                while (currentIntensity > 0) {
-                    this.delayVibrateGamepad(gamepad2, stepDuration, currentIntensity, nextDelay)
-                    nextDelay += stepDuration;
-                    currentIntensity -= intensitySteps;
-                }
-            }
+        if (gamepad1 == null || gamepad2 == null) {
+            console.log("There are not two gamepads connected")
+            return null
         }
+
+        let nextDelay = 0;
+
+        while (nextDelay < sessionLength) {
+            this.delayVibrateGamepad(gamepad1, tapDuration, intensity, nextDelay)
+            nextDelay += tapDuration;
+
+            this.delayVibrateGamepad(gamepad1, breakDuration, 0, nextDelay)
+            this.delayVibrateGamepad(gamepad2, breakDuration, 0, nextDelay)
+            nextDelay += breakDuration;
+
+            this.delayVibrateGamepad(gamepad2, tapDuration, intensity, nextDelay)
+            nextDelay += tapDuration;
+
+            this.delayVibrateGamepad(gamepad1, breakDuration, 0, nextDelay)
+            this.delayVibrateGamepad(gamepad2, breakDuration, 0, nextDelay)
+            nextDelay += breakDuration;
+        } 
     }
 }

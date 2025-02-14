@@ -6,9 +6,9 @@ import "./App.css";
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
-  const [intensity, setIntensity] = useState(50);
-  const [tapDuration, setTapDuration] = useState(50);
-  const [breakDuration, setBreakDuration] = useState(50);
+  const [intensity, setIntensity] = useState(75);
+  const [tapDuration, setTapDuration] = useState(2.5);
+  const [breakDuration, setBreakDuration] = useState(1.5);
   const [controllerHandler, setControllerHandler] = useState(null);
 
   useEffect(() => { 
@@ -28,14 +28,14 @@ function App() {
       <p>{intensity}%</p>
 
       <h3>Tap Duration</h3>
-      <input type="range" id="tap_duration" name="tap_duration" min="1" max="100" onChange={e => setTapDuration(e.target.value)} value={tapDuration} />
-      <p>{tapDuration/10} seconds</p>
+      <input type="range" id="tap_duration" name="tap_duration" min="1" max="10" step="0.1" onChange={e => setTapDuration(e.target.value)} value={tapDuration} />
+      <p>{tapDuration} seconds</p>
 
       <h3>Duration Between Taps</h3>
-      <input type="range" id="break_duration" name="break_duration" min="0" max="100" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
-      <p>{breakDuration/10} seconds</p>
+      <input type="range" id="break_duration" name="break_duration" min="0" max="10" step="0.1" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
+      <p>{breakDuration} seconds</p>
 
-      {controllerHandler != null && (<button onClick={() => controllerHandler.startSession()}>Begin</button>)}
+      {controllerHandler != null && (<button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>)}
     </>
   );
 }
