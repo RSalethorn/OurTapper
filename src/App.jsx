@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import ControllerHandler from "./ControllerHandler";
+import VibrationCurveViewer from "./VibrationCurveViewer";
 import "./App.css";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
       <p>{intensity}%</p>
 
       <h3>Tap Duration</h3>
-      <input type="range" id="tap_duration" name="tap_duration" min="1" max="10" step="0.1" onChange={e => setTapDuration(e.target.value)} value={tapDuration} />
+      <input type="range" id="tap_duration" name="tap_duration" min="0.1" max="10" step="0.1" onChange={e => setTapDuration(e.target.value)} value={tapDuration} />
       <p>{tapDuration} seconds</p>
 
       <h3>Duration Between Taps</h3>
@@ -37,6 +38,7 @@ function App() {
 
       <button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
       <button onClick={() => controllerHandler.stopSession()}>Stop</button>
+      <VibrationCurveViewer a={-60} h={1.25} k={100} tapDuration={tapDuration}/>
     </>
   );
 }
