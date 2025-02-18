@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import ControllerHandler from "./ControllerHandler";
 import VibrationCurveViewer from "./VibrationCurveViewer";
-import "./App.css";
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
@@ -11,7 +7,6 @@ function App() {
   const [tapDuration, setTapDuration] = useState(2.5);
   const [breakDuration, setBreakDuration] = useState(1.5);
   const [controllerHandler, setControllerHandler] = useState(null);
-  const [vibrationCurveParameters, setVibrationCurveParameters] = useState({type: "parabola", a: -64, h: 1.25, k: 100});
 
   useEffect(() => { 
     setControllerHandler(new ControllerHandler());
@@ -39,7 +34,7 @@ function App() {
 
       <button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
       <button onClick={() => controllerHandler.stopSession()}>Stop</button>
-      <VibrationCurveViewer vibrationCurveParameters={vibrationCurveParameters} tapDuration={tapDuration} setVibrationCurveParameters={setVibrationCurveParameters}/>
+      <VibrationCurveViewer a={-60} h={1.25} k={100} tapDuration={tapDuration}/>
     </>
   );
 }
