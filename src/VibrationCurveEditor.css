@@ -1,0 +1,9 @@
+label {
+    display: block;
+}
+
+.vibration_curve_editor {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+}

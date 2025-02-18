@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import ControllerHandler from "./ControllerHandler";
-import VibrationCurveViewer from "./VibrationCurveViewer";
+import VibrationCurveEditor from "./VibrationCurveEditor";
+import VibrationFlatEditor from "./VibrationFlatEditor";
 import "./App.css";
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
-  const [intensity, setIntensity] = useState(75);
   const [tapDuration, setTapDuration] = useState(2.5);
   const [breakDuration, setBreakDuration] = useState(1.5);
   const [controllerHandler, setControllerHandler] = useState(null);
-  const [vibrationCurveParameters, setVibrationCurveParameters] = useState({type: "parabola", a: -64, h: 1.25, k: 100});
+  const [vibrationParameters, setVibrationParameters] = useState({type: "flat", intensity: 100});
 
   useEffect(() => { 
     setControllerHandler(new ControllerHandler());
@@ -25,21 +25,25 @@ function App() {
       <input type="range" id="session_duration" name="session_duration" min="1" max="300" onChange={e => setSessionDuration(e.target.value)} value={sessionDuration} />
       <p>{sessionDuration} seconds</p>
 
-      <h3>Intensity</h3>
-      <input type="range" id="intensity" name="intensity" min="1" max="100" onChange={e => setIntensity(e.target.value)} value={intensity} />
-      <p>{intensity}%</p>
+      <h3>Duration Between Taps</h3>
+      <input type="range" id="break_duration" name="break_duration" min="0" max="10" step="0.1" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
+      <p>{breakDuration} seconds</p>
 
       <h3>Tap Duration</h3>
       <input type="range" id="tap_duration" name="tap_duration" min="0.1" max="10" step="0.1" onChange={e => setTapDuration(e.target.value)} value={tapDuration} />
       <p>{tapDuration} seconds</p>
 
-      <h3>Duration Between Taps</h3>
-      <input type="range" id="break_duration" name="break_duration" min="0" max="10" step="0.1" onChange={e => setBreakDuration(e.target.value)} value={breakDuration} />
-      <p>{breakDuration} seconds</p>
+      <h3>Vibration Type</h3>
+      <select name="vibration_type" id="vibration_type">
+        <option value="flat">Flat</option>
+        <option value="parabola">Wave/Curve</option>
+      </select>
 
-      <button onClick={() => controllerHandler.startSession(sessionDuration*1000, intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
+      <VibrationFlatEditor vibrationParameters={vibrationParameters} setVibrationParameters={setVibrationParameters}/>
+
+      <button onClick={() => controllerHandler.startSession(sessionDuration*1000, vibrationParameters.intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
       <button onClick={() => controllerHandler.stopSession()}>Stop</button>
-      <VibrationCurveViewer vibrationCurveParameters={vibrationCurveParameters} tapDuration={tapDuration} setVibrationCurveParameters={setVibrationCurveParameters}/>
+      {/*<VibrationCurveEditor vibrationParameters={vibrationParameters} tapDuration={tapDuration} setVibrationParameters={setVibrationParameters}/>*/}
     </>
   );
 }

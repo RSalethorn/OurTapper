@@ -1,9 +1,0 @@
-label {
-    display: block;
-}
-
-.vibration_curve_viewer {
-    display: grid;
-    grid-template-columns: 1fr 300px; /* First column takes remaining space, second column is fixed width */
-    gap: 20px; /* Add some space between the columns */
-}
