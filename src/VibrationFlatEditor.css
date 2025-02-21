@@ -1,7 +1,17 @@
-h3 {
-    display: block;
-}
-
-input {
-    display: block;
-}
+.vibration_flat_editor {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+  }
+  
+  h3 {
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    margin: 0;
+  }

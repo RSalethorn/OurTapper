@@ -1,0 +1,80 @@
+.slider_container {
+    display: grid;
+    grid-template-columns: auto 8fr auto 5vw 2fr;
+    margin: 0 ;
+}
+
+.slider_marker_container {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 2 / 3;
+}
+
+.slider_marker {
+    width: 2px;
+    height: 15px;
+    background-color: black;
+    margin: -22px 0 0 0;
+}
+
+.small_marker {
+    height: 10px;
+    width: 1px;
+    margin: -20px 0 0 0;
+}
+
+.blank {
+    opacity: 0%;
+}
+
+.slider_end_marker {
+    height: 25px;
+    width: 4px;
+    padding: 0;
+    margin: 3px 0 0 0;
+    background-color: black;
+}
+
+.slider_value {
+    font-size: 1.2em;
+    width: 100%;
+    margin: 0;
+    border-bottom: 2px black solid;
+    background-color: rgb(240, 240, 240);
+      
+}
+
+/* Remove default appearance */
+input[type="range"] {
+    -webkit-appearance: none; /* For Safari and Chrome */
+    appearance: none; /* Full-width */
+    background: transparent; /* Remove default background */
+    padding: 0;
+    margin: 0;
+}
+
+/* Track: webkit browsers */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 0;
+    background-color: black;
+}
+  
+  /* Track: Mozilla Firefox */
+input[type="range"]::-moz-range-track {
+    height: 2px;
+    border-radius: 0;
+    background-color: black;
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 33px;
+    width: 8px;
+    background-color: black;
+    margin-top: -15px;
+  }

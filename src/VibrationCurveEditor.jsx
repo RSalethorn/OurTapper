@@ -119,6 +119,7 @@ function VibrationCurveEditor({ width = 400, height = 400, tapDuration, vibratio
 
     return (
     <div className="vibration_curve_editor">
+        <h3 id="vibration_curve_editor_title">Curve Editor</h3>
         <div className="canvas_container">
             <canvas ref={canvasRef} width={width} height={height} />
         </div>

@@ -1,16 +1,19 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20rem;
   text-align: center;
+  padding: 0 4vw;
+  max-width: 800px;
+  font-family: "Poppins", serif;
 }
 
-input {
-  width: 90%;
+h1 {
+  text-align: center;
 }
 
 h3 {
   margin-top: 2.5em;
-  margin-bottom: 0.5em;
+
 }
 
 p {
@@ -18,9 +21,29 @@ p {
 }
 
 button {
-  background-color: #2b3bb4;
+  background-color: #0075FF;
   color: rgb(230, 230, 230);
   min-width: 160px;
-  margin: 2.5em 2em;
+  margin: 4em 2em;
+  border-style: 2px solid #B2B2B2;
+  border-radius: 1px;
   
+}
+
+#vibration_type {
+  width: 90%;
+  font-size: 1.1em;
+  background-color: #0075FF;
+  color: antiquewhite;
+  padding: 0.3em 1em;
+  text-align: center;
+  border-radius: 8px;
+  border-style: 2px solid #B2B2B2;
+}
+
+.input_label {
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 4vh 0 0 0;
 }
