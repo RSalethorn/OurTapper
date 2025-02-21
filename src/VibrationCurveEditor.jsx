@@ -113,7 +113,7 @@ function VibrationCurveEditor({ width = 400, height = 400, tapDuration, vibratio
         const updatedA = (0 - vibrationParameters.k) / Math.pow(0 - updatedH, 2);
         const updatedK = 100;
         
-        const updatedParameters = { a: parseFloat(updatedA), h: parseFloat(updatedH), k: parseFloat(updatedK)};
+        const updatedParameters = { ...vibrationParameters, a: parseFloat(updatedA), h: parseFloat(updatedH), k: parseFloat(updatedK)};
         setVibrationParameters(updatedParameters);
     }
 

@@ -17,6 +17,14 @@ function App() {
     setControllerHandler(new ControllerHandler());
   }, []);
 
+  const changeVibrationType = (e) => {
+    if (e.target.value == "flat") {
+      setVibrationParameters({type: "flat", intensity: 100});
+    } else {
+      setVibrationParameters({type: "parabola", a: -64, h: 1.25, k: 100})
+    }
+  }
+
   return (
     <>
       <h1>Tapping</h1>
@@ -34,16 +42,16 @@ function App() {
       <p>{tapDuration} seconds</p>
 
       <h3>Vibration Type</h3>
-      <select name="vibration_type" id="vibration_type">
+      <select name="vibration_type" id="vibration_type" onChange={e => changeVibrationType(e)} value={vibrationParameters.type}>
         <option value="flat">Flat</option>
         <option value="parabola">Wave/Curve</option>
       </select>
 
-      <VibrationFlatEditor vibrationParameters={vibrationParameters} setVibrationParameters={setVibrationParameters}/>
+      {vibrationParameters.type=="flat" ? <VibrationFlatEditor vibrationParameters={vibrationParameters} setVibrationParameters={setVibrationParameters}/> : <VibrationCurveEditor vibrationParameters={vibrationParameters} tapDuration={tapDuration} setVibrationParameters={setVibrationParameters}/>}
+      
 
-      <button onClick={() => controllerHandler.startSession(sessionDuration*1000, vibrationParameters.intensity/100, tapDuration*1000, breakDuration*1000)}>Begin</button>
+      <button onClick={() => controllerHandler.startSession(sessionDuration*1000, tapDuration*1000, breakDuration*1000, vibrationParameters)}>Begin</button>
       <button onClick={() => controllerHandler.stopSession()}>Stop</button>
-      {/*<VibrationCurveEditor vibrationParameters={vibrationParameters} tapDuration={tapDuration} setVibrationParameters={setVibrationParameters}/>*/}
     </>
   );
 }

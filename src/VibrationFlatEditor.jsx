@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef, useEffect } from "react";
+import './VibrationFlatEditor.css';
 
 function VibrationFlatEditor({vibrationParameters, setVibrationParameters }) {
     const changeParameter = (parameter, value) => {
