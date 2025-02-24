@@ -1,0 +1,15 @@
+.vibration_type_button {
+    margin: 0;
+    padding: 5vw;
+
+}
+
+.vibration_type_option {
+    display: none;
+}
+
+/* Change styling when the radio button is checked */
+.vibration_type_option:checked + .vibration_type_button {
+    background-color: #131313;
+    color: white;
+  }

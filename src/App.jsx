@@ -6,6 +6,7 @@ import VibrationCurveEditor from "./VibrationCurveEditor";
 import VibrationFlatEditor from "./VibrationFlatEditor";
 import Slider from "./Slider";
 import "./App.css";
+import VibrationTypeSelect from "./VibrationTypeSelect";
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
@@ -47,11 +48,10 @@ function App() {
       <label class="input_label"for="tap_duration">Tap duration</label>
       <Slider min={0.1} max={10} step={0.1} id={"tap_duration"} name={"tap_duration"} noOfMarkers={17} stateVar={tapDuration} setStateVar={setTapDuration} formattingFunction={formatBreakDuration}/>
 
+
+
       <h3>Vibration Type</h3>
-      <select name="vibration_type" id="vibration_type" onChange={e => changeVibrationType(e)} value={vibrationParameters.type}>
-        <option value="flat">Flat</option>
-        <option value="parabola">Curve</option>
-      </select>
+      <VibrationTypeSelect vibrationParameters={vibrationParameters} setVibrationParameters={setVibrationParameters} />
 
       {vibrationParameters.type=="flat" ? <VibrationFlatEditor vibrationParameters={vibrationParameters} setVibrationParameters={setVibrationParameters}/> : <VibrationCurveEditor vibrationParameters={vibrationParameters} tapDuration={tapDuration} setVibrationParameters={setVibrationParameters}/>}
       
