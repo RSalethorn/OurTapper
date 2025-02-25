@@ -4,16 +4,18 @@
   text-align: center;
   padding: 0 4vw;
   max-width: 800px;
-  font-family: "Poppins", serif;
+  width: 90vw;
+  font-family: 'Poppins', serif;
 }
 
 h1 {
   text-align: center;
+  font-size: 2em;
+  font-weight: 600;
 }
 
 h3 {
   margin-top: 2.5em;
-
 }
 
 p {
@@ -21,24 +23,12 @@ p {
 }
 
 button {
-  background-color: #0075FF;
+  background-color: #0075ff;
   color: rgb(230, 230, 230);
   min-width: 160px;
   margin: 4em 2em;
-  border-style: 2px solid #B2B2B2;
+  border-style: 2px solid #b2b2b2;
   border-radius: 1px;
-  
-}
-
-#vibration_type {
-  width: 90%;
-  font-size: 1.1em;
-  background-color: #0075FF;
-  color: antiquewhite;
-  padding: 0.3em 1em;
-  text-align: center;
-  border-radius: 8px;
-  border-style: 2px solid #B2B2B2;
 }
 
 .input_label {

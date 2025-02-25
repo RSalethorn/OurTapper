@@ -1,27 +1,46 @@
-import React from "react";
-import "./VibrationTypeSelect.css"
+import React from 'react';
+import './VibrationTypeSelect.css';
 
-function VibrationTypeSelect({vibrationParameters, setVibrationParameters}) {
-    const changeVibrationType = (type) => {
-        if (type === vibrationParameters.type) { return; }
-
-        if (type === "flat") {
-            setVibrationParameters({type: "flat", intensity: 100});
-        } else if (type == "parabola") {
-            setVibrationParameters({type: "parabola", a: -64, h: 1.25, k: 100})
-        }
+function VibrationTypeSelect({ vibrationParameters, setVibrationParameters }) {
+  const changeVibrationType = (type) => {
+    if (type === vibrationParameters.type) {
+      return;
     }
-    
-    return (
-        
-      <div class="vibration_type_selector_container">
-        <input type="radio" name="vibration_type" id="vibration_type_flat" class="vibration_type_option" onClick={() => changeVibrationType("flat")}/>
-        <label htmlFor="vibration_type_flat" className="vibration_type_button">Flat</label>
-        <input type="radio" name="vibration_type" id="vibration_type_parabola" class="vibration_type_option" onClick={() => changeVibrationType("parabola")}/>
-        <label htmlFor="vibration_type_parabola" className="vibration_type_button">Curve</label>
-      </div>
-    );
-}
 
+    if (type === 'flat') {
+      setVibrationParameters({ type: 'flat', intensity: 100 });
+    } else if (type == 'parabola') {
+      setVibrationParameters({ type: 'parabola', a: -64, h: 1.25, k: 100 });
+    }
+  };
+
+  return (
+    <div className='vibration_type_selector_container'>
+      <button
+        id='vibration_type_flat'
+        aria-labelledby='vibration_type_label'
+        className={
+          'vibration_type_button first_button' +
+          (vibrationParameters.type === 'flat' ? ' selected' : '')
+        }
+        onClick={() => changeVibrationType('flat')}
+      >
+        Flat
+      </button>
+      <button
+        name='vibration_type'
+        id='vibration_type_parabola'
+        aria-labelledby='vibration_type_label'
+        className={
+          'vibration_type_button last_button' +
+          (vibrationParameters.type === 'parabola' ? ' selected' : '')
+        }
+        onClick={() => changeVibrationType('parabola')}
+      >
+        Curve
+      </button>
+    </div>
+  );
+}
 
 export default VibrationTypeSelect;

@@ -1,20 +1,37 @@
-import React from "react";
+import React from 'react';
 import './VibrationFlatEditor.css';
+import Slider from './Slider';
 
-function VibrationFlatEditor({vibrationParameters, setVibrationParameters }) {
-    const changeParameter = (parameter, value) => {
-        const updatedParameters = { ...vibrationParameters, [parameter]: parseFloat(value)}
-        setVibrationParameters(updatedParameters);
+function VibrationFlatEditor({ vibrationParameters, setVibrationParameters }) {
+  const changeIntensity = (value) => {
+    const updatedParameters = {
+      ...vibrationParameters,
+      ['intensity']: parseFloat(value),
     };
+    setVibrationParameters(updatedParameters);
+  };
 
-    return (
-        <div className="vibration_flat_editor">
-            <h3>Intensity</h3>
-            <input type="range" id="intensity" name="intensity" min="1" max="100" onChange={e => changeParameter("intensity", e.target.value)} value={vibrationParameters.intensity} />
-            <p>{vibrationParameters.intensity}%</p>
-        </div>
-    );
+  const formatIntensity = (intensity) => {
+    return `${intensity}%`;
+  };
+
+  return (
+    <div className='vibration_flat_editor'>
+      <label class='input_label' for='intensity'>
+        Intensity
+      </label>
+      <Slider
+        min={1}
+        max={100}
+        id={'intensity'}
+        name={'intensity'}
+        noOfMarkers={19}
+        stateVar={vibrationParameters.intensity}
+        setStateVar={changeIntensity}
+        formattingFunction={formatIntensity}
+      />
+    </div>
+  );
 }
-
 
 export default VibrationFlatEditor;
