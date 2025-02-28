@@ -1,8 +1,7 @@
 #root {
   margin: 0 auto;
-  padding: 20rem;
   text-align: center;
-  padding: 0 4vw;
+  padding: 0 4vw 16vw 4vw;
   max-width: 800px;
   width: 90vw;
   font-family: 'Poppins', serif;

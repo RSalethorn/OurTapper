@@ -7,6 +7,7 @@ import VibrationFlatEditor from './VibrationFlatEditor';
 import Slider from './Slider';
 import './App.css';
 import VibrationTypeSelect from './VibrationTypeSelect';
+import SessionControlBar from './SessionControlBar';
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
@@ -106,20 +107,13 @@ function App() {
           setVibrationParameters={setVibrationParameters}
         />
       )}
-
-      <button
-        onClick={() =>
-          controllerHandler.startSession(
-            sessionDuration * 1000,
-            tapDuration * 1000,
-            breakDuration * 1000,
-            vibrationParameters,
-          )
-        }
-      >
-        Begin
-      </button>
-      <button onClick={() => controllerHandler.stopSession()}>Stop</button>
+      <SessionControlBar
+        controllerHandler={controllerHandler}
+        sessionDuration={sessionDuration}
+        tapDuration={tapDuration}
+        breakDuration={breakDuration}
+        vibrationParameters={vibrationParameters}
+      />
     </>
   );
 }
