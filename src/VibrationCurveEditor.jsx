@@ -92,7 +92,7 @@ function VibrationCurveEditor({
     h = vibrationParameters['h'];
     k = vibrationParameters['k'];
 
-    for (let x = 0; x <= tapDuration * 1000; x += 0.001) {
+    for (let x = 0; x <= tapDuration * 1000; x += 0.01) {
       const y = a * Math.pow(x - h, 2) + k; // Parabola equation: y = a(x - h)^2 + k
       if (y < 0) {
         continue;
