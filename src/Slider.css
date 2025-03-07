@@ -12,15 +12,15 @@
 
 .slider_marker {
   width: 2px;
-  height: 15px;
+  height: 12px;
   background-color: black;
-  margin: -22px 0 0 0;
+  margin: -19px 0 0 0;
 }
 
 .small_marker {
-  height: 10px;
+  height: 8px;
   width: 1px;
-  margin: -20px 0 0 0;
+  margin: -17px 0 0 0;
 }
 
 .blank {
@@ -28,15 +28,15 @@
 }
 
 .slider_end_marker {
-  height: 25px;
-  width: 4px;
+  height: 16px;
+  width: 2px;
   padding: 0;
-  margin: 3px 0 0 0;
+  margin: 5px 0 0 0;
   background-color: black;
 }
 
 .slider_value {
-  font-size: 1.2em;
+  font-size: 1em;
   width: 100%;
   margin: 0;
   border-bottom: 2px black solid;
@@ -54,7 +54,7 @@ input[type='range'] {
 
 /* Track: webkit browsers */
 input[type='range']::-webkit-slider-runnable-track {
-  height: 3px;
+  height: 2px;
   border-radius: 0;
   background-color: black;
 }
@@ -73,7 +73,7 @@ input[type='range']::-webkit-slider-thumb {
   appearance: none;
   /* creating a custom design */
   height: 33px;
-  width: 8px;
+  width: 16px;
   background-color: black;
   margin-top: -15px;
 }

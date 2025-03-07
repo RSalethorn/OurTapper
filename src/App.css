@@ -24,7 +24,6 @@ p {
 button {
   background-color: #0075ff;
   color: rgb(230, 230, 230);
-  min-width: 160px;
   margin: 4em 2em;
   border-style: 2px solid #b2b2b2;
   border-radius: 1px;

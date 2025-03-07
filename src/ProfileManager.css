@@ -1,0 +1,36 @@
+.profile_manager_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile_manager_select_container {
+  width: 70vw;
+  display: grid;
+  grid-template-columns: auto 4em 4em 4em;
+  column-gap: 0.2em;
+  margin: 0;
+  max-width: 500px;
+}
+
+.profile_manager_create_container {
+  width: 70vw;
+  display: grid;
+  grid-template-columns: auto 7em;
+  column-gap: 0.2em;
+  margin: 0;
+  max-width: 500px;
+}
+
+.profile_manager_button {
+  font-size: 0.9em;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+#profile_create_name {
+  width: auto;
+}

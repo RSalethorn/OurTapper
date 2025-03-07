@@ -24,14 +24,24 @@ function SessionControlBar({
           )
         }
       >
-        <img id='play_icon' alt='Play Icon' src={play_icon}></img>
+        <img
+          id='play_icon'
+          alt='Play Icon'
+          className='session_control_icon'
+          src={play_icon}
+        ></img>
       </button>
       <button
         id='stop_button'
         className='control_button'
         onClick={() => controllerHandler.stopSession()}
       >
-        <img id='stop_icon' alt='Stop Icon' src={stop_icon}></img>
+        <img
+          id='stop_icon'
+          alt='Stop Icon'
+          className='session_control_icon'
+          src={stop_icon}
+        ></img>
       </button>
       <div></div>
     </div>

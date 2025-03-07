@@ -8,6 +8,7 @@ import Slider from './Slider';
 import './App.css';
 import VibrationTypeSelect from './VibrationTypeSelect';
 import SessionControlBar from './SessionControlBar';
+import ProfileManager from './ProfileManager';
 
 function App() {
   const [sessionDuration, setSessionDuration] = useState(50);
@@ -42,6 +43,16 @@ function App() {
   return (
     <>
       <h1>OurTapper</h1>
+      <ProfileManager
+        currentSessionDuration={sessionDuration}
+        setCurrentSessionDuration={setSessionDuration}
+        currentBreakDuration={breakDuration}
+        setCurrentBreakDuration={setBreakDuration}
+        currentTapDuration={tapDuration}
+        setCurrentTapDuration={setTapDuration}
+        currentVibrationParameters={vibrationParameters}
+        setCurrentVibrationParameters={setVibrationParameters}
+      />
 
       <label class='input_label' for='session_duration'>
         Session Length
