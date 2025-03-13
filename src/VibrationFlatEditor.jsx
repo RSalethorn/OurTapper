@@ -3,6 +3,7 @@ import './VibrationFlatEditor.css';
 import Slider from './Slider';
 
 function VibrationFlatEditor({ vibrationParameters, setVibrationParameters }) {
+  // Change intensity inside vibrationParameters object
   const changeIntensity = (value) => {
     const updatedParameters = {
       ...vibrationParameters,

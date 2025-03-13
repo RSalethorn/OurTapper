@@ -4,6 +4,7 @@ import add_icon from '../assets/add.png';
 
 import React, { useState } from 'react';
 
+// Inputs to create new profile
 function ProfileCreate({ setIsAddingProfile, createProfile }) {
   // profileName: the input profile name
   const [profileName, setProfileName] = useState('');

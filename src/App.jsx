@@ -24,6 +24,7 @@ function App() {
     setControllerHandler(new ControllerHandler());
   }, []);
 
+  // Swap between flat and parabola vibrations, also setting default values.
   const changeVibrationType = (e) => {
     if (e.target.value == 'flat') {
       setVibrationParameters({ type: 'flat', intensity: 100 });
@@ -32,12 +33,14 @@ function App() {
     }
   };
 
-  const formatSessionDuration = (session_duration) => {
-    return `${Math.floor(session_duration / 60)}m ${session_duration % 60}s`;
+  // Takes time in seconds and returns it as a string in minutes and seconds
+  const formatMinutesAndSeconds = (seconds) => {
+    return `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
   };
 
-  const formatBreakDuration = (session_duration) => {
-    return `${session_duration}s`;
+  // Takes time in seconds and returns it as a string with a "s" prefix
+  const formatSeconds = (seconds) => {
+    return `${seconds}s`;
   };
 
   return (
@@ -65,7 +68,7 @@ function App() {
         noOfMarkers={17}
         stateVar={sessionDuration}
         setStateVar={setSessionDuration}
-        formattingFunction={formatSessionDuration}
+        formattingFunction={formatMinutesAndSeconds}
       />
 
       <label class='input_label' for='break_duration'>
@@ -80,7 +83,7 @@ function App() {
         noOfMarkers={17}
         stateVar={breakDuration}
         setStateVar={setBreakDuration}
-        formattingFunction={formatBreakDuration}
+        formattingFunction={formatSeconds}
       />
 
       <label class='input_label' for='tap_duration'>
@@ -95,7 +98,7 @@ function App() {
         noOfMarkers={17}
         stateVar={tapDuration}
         setStateVar={setTapDuration}
-        formattingFunction={formatBreakDuration}
+        formattingFunction={formatSeconds}
       />
 
       <label className='input_label' id='vibration_type_label'>

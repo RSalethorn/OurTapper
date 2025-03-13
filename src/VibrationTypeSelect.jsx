@@ -2,11 +2,14 @@ import React from 'react';
 import './VibrationTypeSelect.css';
 
 function VibrationTypeSelect({ vibrationParameters, setVibrationParameters }) {
+  // Swap between flat and parabola curves
   const changeVibrationType = (type) => {
+    // Do nothing if type parameter is same as current type
     if (type === vibrationParameters.type) {
       return;
     }
 
+    // Set default vibrationParameters for the vibration type
     if (type === 'flat') {
       setVibrationParameters({ type: 'flat', intensity: 100 });
     } else if (type == 'parabola') {
