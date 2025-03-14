@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './ProfileManager.css';
 
@@ -22,32 +22,18 @@ function ProfileManager({
   const [currentProfileID, setCurrentProfileID] = useState(0);
 
   // profiles: list of saved profiles
-  const [profiles, setProfiles] = useState([
-    {
-      id: 1,
-      name: 'Profile 1',
-      sessionDuration: 57,
-      tapDuration: 2.6,
-      breakDuration: 1,
-      vibrationParameters: {
-        type: 'flat',
-        intensity: 80,
-      },
-    },
-    {
-      id: 2,
-      name: 'Profile 2',
-      sessionDuration: 20,
-      tapDuration: 4.2,
-      breakDuration: 0.5,
-      vibrationParameters: {
-        type: 'parabola',
-        a: -50,
-        h: 2,
-        k: 54,
-      },
-    },
-  ]);
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    let profilesStorageJSON = localStorage.getItem('profiles');
+
+    if (profilesStorageJSON === null) {
+      localStorage.setItem('profiles', JSON.stringify([]));
+      profilesStorageJSON = '[]';
+    }
+
+    setProfiles(JSON.parse(profilesStorageJSON));
+  }, []);
 
   // Params - currentID: the ID of the profile to be changed to
   // Changes the currently loaded profile
@@ -70,7 +56,13 @@ function ProfileManager({
 
     setCurrentProfileID(newProfileID);
 
-    setProfiles([
+    const profilesStorageJSON = localStorage.getItem('profiles');
+
+    console.log(profilesStorageJSON);
+
+    let profilesStorage = JSON.parse(profilesStorageJSON);
+
+    const updatedProfiles = [
       ...profiles,
       {
         id: newProfileID,
@@ -80,7 +72,11 @@ function ProfileManager({
         breakDuration: currentBreakDuration,
         vibrationParameters: currentVibrationParameters,
       },
-    ]);
+    ];
+
+    setProfiles(updatedProfiles);
+
+    localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
   };
 
   // Updates the current profile to have the settings that are currently input
@@ -101,6 +97,7 @@ function ProfileManager({
         return profile;
       }
     });
+    localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
     setProfiles(updatedProfiles);
   };
 
@@ -124,6 +121,7 @@ function ProfileManager({
     setCurrentProfileID(0);
 
     setProfiles(updatedProfiles);
+    localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
   };
 
   const profileManagerCurrentComponent = isAddingProfile ? (
